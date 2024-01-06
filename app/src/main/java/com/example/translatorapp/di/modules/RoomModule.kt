@@ -2,8 +2,8 @@ package com.example.translatorapp.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.example.translatorapp.base.WordsDatabase
-import com.example.translatorapp.data.dao.WordsDao
+import com.example.translatorapp.data.db.WordsDatabase
+import com.example.translatorapp.data.db.WordsDao
 import dagger.Module
 import dagger.Provides
 

@@ -1,8 +1,6 @@
 package com.example.translatorapp.data.repository
 
 import com.example.translatorapp.data.api.MyMemoryService
-import com.example.translatorapp.data.dao.WordsDao
-import com.example.translatorapp.data.dao.models.WordEntity
 import com.example.translatorapp.data.models.ResponseData
 import javax.inject.Inject
 

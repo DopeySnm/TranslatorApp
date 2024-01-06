@@ -40,7 +40,7 @@ class TranslatorFragment : Fragment(R.layout.fragment_translator) {
             viewModel.insertWord(binding.editText.toString())
         }
 
-        viewModel.wordsLiveData.observe(viewLifecycleOwner) {
+        viewModel.wordsLiveData?.observe(viewLifecycleOwner) {
             binding.getWordsButton.text = it.first().value
         }
     }

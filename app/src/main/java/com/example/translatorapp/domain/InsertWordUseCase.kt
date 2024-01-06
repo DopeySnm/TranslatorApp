@@ -1,6 +1,6 @@
 package com.example.translatorapp.domain
 
-import com.example.translatorapp.data.dao.models.WordEntity
+import com.example.translatorapp.data.db.models.WordEntity
 import com.example.translatorapp.data.repository.WordsRepository
 import javax.inject.Inject
 

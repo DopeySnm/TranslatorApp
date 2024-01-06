@@ -4,15 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.translatorapp.data.dao.models.WordEntity
+import com.example.translatorapp.data.db.models.WordEntity
 import com.example.translatorapp.data.models.ResponseData
 import com.example.translatorapp.domain.GetAllWordUseCase
 import com.example.translatorapp.domain.InsertWordUseCase
 import com.example.translatorapp.domain.TranslateUseCase
 import com.example.translatorapp.presenter.UiState
 import com.example.translatorapp.presenter.toUiState
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,7 +20,7 @@ class TranslatorViewModel @Inject constructor(
     private val insertWordUseCase: InsertWordUseCase
 ) : ViewModel() {
 
-    private var _wordsLiveData: LiveData<List<WordEntity>>? = null
+    private var _wordsLiveData = MutableLiveData<List<WordEntity>>()
     val wordsLiveData: LiveData<List<WordEntity>>?
         get() = _wordsLiveData
 
@@ -32,8 +30,10 @@ class TranslatorViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val wordsResult = getAllWordUseCase()
-            _wordsLiveData = wordsResult
+            getAllWordUseCase().collect{
+                _wordsLiveData.postValue(it)
+            }
+
         }
     }
 
